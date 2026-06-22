@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zayden Linn | Portfolio</title>
+    <style>
+        /* Global & Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent; /* ဖုန်းမှာ Button နှိပ်ရင် အမည်းကွက်ကြီး မပေါ်အောင် */
+        }
+
+        body {
+            background-color: #08080a; /* Deep Premium Dark */
+            color: #f1f5f9;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Glow Effects */
+        .glow-bg {
+            position: fixed;
+            top: -10%;
+            left: 20%;
+            width: 100%;
+            max-width: 600px;
+            height: 600px;
+            background: rgba(0, 242, 254, 0.05);
+            border-radius: 50%;
+            filter: blur(150px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: rgba(8, 8, 10, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #00f2fe;
+            padding: 2px 6px;
+            border: 1px solid #00f2fe;
+            border-radius: 4px;
+            font-size: 18px;
+            margin-left: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            position: relative;
+            padding-bottom: 4px;
+            white-space: nowrap;
+        }
+
+        nav ul li a:hover {
+            color: #00f2fe;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #00f2fe;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Start Project Button */
+        .nav-btn {
+            border: 1px solid rgba(0, 242, 254, 0.4);
+            padding: 12px 24px;
+            border-radius: 50px;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-height: 44px; /* Mobile Friendly Touch Size */
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .nav-btn:hover {
+            background-color: #00f2fe;
+            color: #000000;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        /* Hero Layout */
+        #hero {
+            min-height: calc(100vh - 75px);
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr; 
+            align-items: flex-end; 
+            padding: 40px 8%;
+            gap: 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-left {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-left img {
+            max-width: 100%;
+            max-height: 70vh; 
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 20px 40px rgba(0, 242, 254, 0.15)); 
+            transition: transform 0.5s ease;
+        }
+
+        .hero-left img:hover {
+            transform: scale(1.02); 
+        }
+
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-bottom: 8vh; 
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            padding-left: 50px;
+        }
+
+        .hero-right h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .hero-right h1 span {
+            background: linear-gradient(135deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sub-tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #00f2fe;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .sub-tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: #00f2fe;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #00f2fe;
+        }
+
+        .hero-right h2 {
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+            color: #e2e8f0;
+            line-height: 1.3;
+        }
+
+        .hero-right p {
+            color: #94a3b8;
+            font-size: 15px;
+            margin-bottom: 35px;
+            max-width: 450px;
+            line-height: 1.7;
+        }
+
+        /* Buttons Layout (Fixed Sizes Corrected for Responsiveness) */
+        .cta-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap; /* ဖုန်းမှာ Button တစ်ခုချင်းဆင်းပေးဖို့ */
+            width: 100%;
+        }
+
+        .btn-outline, .btn-fill {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1; /* လက်ကျန်နေရာအလိုက်အချိုးကျကြီးသွားမယ် */
+            min-width: 160px; /* အနည်းဆုံးအရွယ်အစားကိုပဲသတ်မှတ် */
+            max-width: 200px;
+            height: 48px; 
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            padding: 0 15px;
+        }
+
+        .btn-outline {
+            background-color: #121216;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .btn-outline:hover {
+            border-color: #00f2fe;
+            color: #00f2fe;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 242, 254, 0.1);
+        }
+
+        .btn-fill {
+            background: linear-gradient(135deg, #00f2fe, #4facfe);
+            color: #000000;
+            border: none;
+        }
+
+        .btn-fill:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 242, 254, 0.3);
+        }
+
+        /* Sections General Trigger Animation */
+        section {
+            padding: 80px 8%;
+            position: relative;
+            z-index: 10;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        section.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-tag {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #00f2fe;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        section h2.section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 40px;
+            color: #ffffff;
+        }
+
+        /* About Section */
+        #about p {
+            max-width: 700px;
+            font-size: 16px;
+            color: #94a3b8;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Universal Grid Layout */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* TYPE 1: WORK EXPERIENCES CARD */
+        .exp-card {
+            background: #0d0d12;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 250px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .exp-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #00f2fe, #4facfe);
+            transform: scale-x(0);
+            transition: transform 0.4s ease;
+        }
+
+        .exp-card:hover {
+            transform: translateY(-5px);
+            background: #13131a;
+            border-color: rgba(0, 242, 254, 0.2);
+        }
+
+        .exp-card:hover::after {
+            transform: scale-x(1);
+        }
+
+        .exp-card h3 {
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+
+        .exp-card:hover h3 {
+            color: #00f2fe;
+        }
+
+        .exp-card .meta-text {
+            font-size: 12px;
+            color: #4facfe;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .exp-card p, .service-card p {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        /* TYPE 2: AWARDS CARD */
+        .award-card {
+            background: linear-gradient(145deg, #0e0e14, #07070a);
+            padding: 35px;
+            border-radius: 16px;
+            border: 1px solid rgba(212, 175, 55, 0.1); 
+            position: relative;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .award-card:hover {
+            border-color: rgba(0, 242, 254, 0.6);
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
+            transform: scale(1.02);
+        }
+
+        .award-card h3 {
+            font-size: 1.35rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .award-card .meta-text {
+            font-size: 12px;
+            color: #ffd700; 
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .award-card p {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* TYPE 3: SERVICES CARD */
+        .service-card {
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 250px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+            background: rgba(0, 242, 254, 0.02);
+            border-color: rgba(0, 242, 254, 0.3);
+            transform: translateY(-8px) scale(1.01);
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .service-card .meta-text {
+            font-size: 11px;
+            background: rgba(0, 242, 254, 0.1);
+            color: #00f2fe;
+            padding: 4px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        /* Action Buttons inside Cards (Unified Responsive Size) */
+        .card-btn {
+            cursor: pointer;
+            align-self: flex-start;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            height: 42px; /* Touch Screen နှိပ်ရလွယ်အောင် မြှင့်ထားပါတယ် */
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .exp-card:hover .card-btn, 
+        .service-card:hover .card-btn {
+            background: rgba(0, 242, 254, 0.1);
+            border-color: #00f2fe;
+            color: #00f2fe;
+        }
+
+        .award-card .card-btn {
+            border-color: rgba(212, 175, 55, 0.3);
+            color: #ffd700;
+        }
+
+        .award-card:hover .card-btn {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: #ffd700;
+        }
+
+        /* Contact Details Layout */
+        .contact-container {
+            width: 100%;
+        }
+
+        .contact-info p {
+            color: #94a3b8;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        .contact-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            border-color: rgba(0, 242, 254, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .info-item span {
+            display: block;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #64748b;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .info-item a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s;
+            word-break: break-all; /* စာရှည်ရင် လျှံမထွက်အောင် ဖျက်ချဖို့ */
+        }
+
+        .info-item a:hover {
+            color: #00f2fe;
+        }
+
+        /* SUB PAGE POPUP (MODAL WINDOW STYLES) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(4, 4, 6, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: #0d0d12;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 242, 254, 0.05);
+            width: 100%;
+            max-width: 650px;
+            border-radius: 20px;
+            padding: clamp(20px, 5vw, 40px);
+            position: relative;
+            transform: scale(0.85);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-height: 90vh;
+            overflow-y: auto; /* စာများရင် Scroll ဆွဲလို့ရအောင် */
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 35px;
+            color: #64748b;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+            z-index: 10;
+            padding: 5px; /* နှိပ်ရလွယ်အောင် Area ချဲ့ထားခြင်း */
+        }
+
+        .modal-close:hover {
+            color: #00f2fe;
+        }
+
+        .modal-body {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* IMAGE SLIDESHOW (PREV / NEXT) STYLES */
+        .modal-slider-container {
+            position: relative;
+            width: 100%;
+            height: clamp(180px, 40vh, 300px); /* မျက်နှာပြင်အလိုက် အမြင့်ပြောင်းလဲပေးခြင်း */
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            background: #161622;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .slide-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none; 
+        }
+
+        .slide-img.active {
+            display: block;
+            animation: fadeEffect 0.4s ease;
+        }
+
+        @keyframes fadeEffect {
+            from { opacity: 0.4; } 
+            to { opacity: 1; }
+        }
+
+        /* Prev & Next Navigation Buttons */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(8, 8, 10, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            width: 44px; /* Mobile Friendly Tap Size */
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            user-select: none;
+            z-index: 5;
+        }
+
+        .slider-btn:hover {
+            background: #00f2fe;
+            color: #000000;
+            border-color: #00f2fe;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+        }
+
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        /* Slider Dots Indicator */
+        .slider-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 5;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #00f2fe;
+            width: 20px;
+            border-radius: 4px;
+        }
+
+        .modal-body h3 {
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .modal-body .modal-meta {
+            font-size: 13px;
+            color: #ffd700;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .modal-body p {
+            color: #94a3b8;
+            font-size: 14.5px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050507;
+            color: #475569;
+            text-align: center;
+            padding: 30px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        /* -------------------------------------------------------------
+            RESPONSIVE MEDIA QUERIES (TABLETS, PHONES, IPADS)
+        ------------------------------------------------------------- */
+        @media (max-width: 1024px) {
+            nav { padding: 15px 4%; }
+            #hero { padding: 40px 4%; gap: 30px; }
+            section { padding: 60px 4%; }
+        }
+
+        /* Navigation Responsive Dropdown Hiding Rules or Adjustments */
+        @media (max-width: 900px) {
+            nav ul { display: none; } /* ဖုန်း/Tablet မီနူးဘာမဆံ့ရင် ယာယီဖျောက်ထားပေးပါတယ် */
+            #hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                align-items: center;
+                padding-top: 20px;
+            }
+            .hero-left { order: 2; } /* ဖုန်းမှာပုံကိုအောက်ပို့ပြီး စာကိုအပေါ်တင်ရန် */
+            .hero-right { 
+                order: 1; 
+                border-left: none;
+                padding-left: 0;
+                padding-bottom: 20px;
+                align-items: center;
+            }
+            .sub-tag { justify-content: center; }
+            .cta-container { justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 18px; }
+            .logo span { font-size: 15px; }
+            .nav-btn { padding: 10px 16px; font-size: 11px; }
+            .cta-container .btn-outline, .cta-container .btn-fill {
+                max-width: 100%; /* ဖုန်းကျဉ်းကျဉ်းလေးတွေမှာ ခလုတ်အပြည့်ဖြစ်သွားအောင် */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-bg"></div>
+
+    <nav>
+        <div class="logo">The <span>Trader</span> Talk</div>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#experiences">Experiences</a></li>
+            <li><a href="#awards">Awards</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="nav-btn">Start Project</a>
+    </nav>
+
+    <header id="hero">
+        <div class="hero-left">
+            <img src="Zay.png" alt="Zayden Linn Portrait">
+        </div>
+        
+        <div class="hero-right">
+            <h1>Zayden <span>Linn</span></h1>
+            <div class="sub-tag">Trading Education and Account services</div>
+            
+            <h2>Innovate. Develop.<br>Succeed. Fast.</h2>
+            <p>📈 Professional Trading Services & Market Insights.<br>💬 Let’s build your edge together.</p>
+            
+            <div class="cta-container">
+                <a href="#contact" class="btn-outline">Get Services</a>
+                <a href="#services" class="btn-fill">Our Services</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <p>
+            Hello, I am Zayden. I’m an Introducing Broker with over 5 years of hands-on experience in Forex and Crypto trading. I help traders grow with proper risk management, market analysis, and consistent guidance. Backed by half a decade of market expertise, I provide seamless account setup support, high-probability daily trade ideas, and tailored 1-on-1 mentoring for both beginners and experienced traders. Join my team for reliable support and long-term trading growth.
+        </p>
+    </section>
+
+    <section id="experiences">
+        <h2 class="section-title">Work Experiences</h2>
+        <div class="content-grid">
+            <div class="exp-card">
+                <div>
+                    <h3>Team Leader</h3>
+                    <div class="meta-text">MH Markets | 2026 - Present</div>
+                    <p>Leading a high-performing team and driving strategic client acquisition in the forex market.</p>
+                </div>
+                <a href="https://mhmarkets.com/global/en" target="_blank" class="card-btn">View Details &rarr;</a>
+            </div>
+            <div class="exp-card">
+                <div>
+                    <h3>Master IB</h3>
+                    <div class="meta-text">VT Markets | 2024 - 2026</div>
+                    <p>Managed over 2,800 active trading accounts and expanded a massive network of sub-agents.</p>
+                </div>
+                <a href="https://vtmarkets.com" target="_blank" class="card-btn">View Details &rarr;</a>
+            </div>
+            <div class="exp-card">
+                <div>
+                    <h3>Team Leader</h3>
+                    <div class="meta-text">Trade W | 2020 - 2022</div>
+                    <p>Educated retail traders and organized high-impact seminars on technical market analysis.</p>
+                </div>
+                <a href="https://www.tradewill.com/" target="_blank" class="card-btn">View Details &rarr;</a>
+            </div>
+            <div class="exp-card">
+                <div>
+                    <h3>Account Manager</h3>
+                    <div class="meta-text">MH Markets | 2022 - 2023</div>
+                    <p>Provided premium client support, handling seamless financial transactions and platform issues.</p>
+                </div>
+                <a href="https://mhmarkets.com/global/en" target="_blank" class="card-btn">View Details &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="awards">
+        <h2 class="section-title">Awards I've Got</h2>
+        <div class="content-grid">
+            <div class="award-card">
+                <div>
+                    <h3>Top IB of the Year</h3>
+                    <div class="meta-text">VT Markets | 2026</div>
+                    <p>Awarded for managing over 2,800 trading accounts and managing a combined volume of over USD 2 Million in 2025 alone.</p>
+                </div>
+                <div id="openAwardBtn" class="card-btn">Show More Info &rarr;</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="awardModal">
+        <div class="modal-box">
+            <span class="modal-close" id="closeAwardBtn">&times;</span>
+            <div class="modal-body">
+                
+                <div class="modal-slider-container">
+                    <div class="slider-btn prev-btn" id="prevSlide">&#10094;</div>
+                    
+                    <img src="1.jpeg" class="slide-img active" alt="Certificate 1" onerror="this.src='https://placehold.co/600x300/161622/00f2fe?text=Certificate+Image+1'">
+                    <img src="2.jpeg" class="slide-img" alt="Certificate 2" onerror="this.src='https://placehold.co/600x300/161622/ffd700?text=Certificate+Image+2'">
+                    <img src="3.jpeg" class="slide-img" alt="Certificate 3" onerror="this.src='https://placehold.co/600x300/161622/4facfe?text=Certificate+Image+3'">
+                    <img src="4.jpeg" class="slide-img" alt="Certificate 4" onerror="this.src='https://placehold.co/600x300/161622/4facfe?text=Certificate+Image+4'">
+                    <div class="slider-btn next-btn" id="nextSlide">&#10095;</div>
+
+                    <div class="slider-dots">
+                        <div class="dot active"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+
+                <h3>Top IB of the Year</h3>
+                <div class="modal-meta">VT Markets | Official Recognition</div>
+                <p>
+                    This prestigious award recognizes my outstanding performance as an Introducing Broker, managing over 2,800 active trading accounts and facilitating a combined trading volume of over USD 2 Million in 2025. It reflects my dedication to providing exceptional service and support to traders, as well as my significant contribution to the growth and success of VT Markets.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <section id="services">
+        <h2 class="section-title">Services</h2>
+        <div class="content-grid">
+            <div class="service-card">
+                <div>
+                    <div class="meta-text">Classes Service</div>
+                    <h3>Trading Classes</h3>
+                    <p>I offer complete mentorship training covering Trading Basics, Advanced strategies, and Market Psychology.</p>
+                </div>
+                <a href="https://t.me/thetradertalk2026" target="_blank" class="card-btn">Get Service &rarr;</a>
+            </div>
+            <div class="service-card">
+                <div>
+                    <div class="meta-text">Account Services</div>
+                    <h3>Trade Account Services</h3>
+                    <p>I provide full deposit and withdrawal support, offering a variety of account types including Standard, ECN, and Cent accounts.</p>
+                </div>
+                <a href="https://t.me/thetradertalk2026" target="_blank" class="card-btn">Get Service &rarr;</a>
+            </div>
+            <div class="service-card">
+                <div>
+                    <div class="meta-text">Support Services</div>
+                    <h3>Broker Support Services</h3>
+                    <p>Direct Liaison: Partnering directly with the broker company for fast error resolution and full support for any platform or technical issues.</p>
+                </div>
+                <a href="https://t.me/thetradertalk2026" target="_blank" class="card-btn">Get Service &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-tag">// Get In Touch</div>
+        <h2 class="section-title">Let's Start Something</h2>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <p>Whether you have great ideas to share or need reliable trading services, feel free to reach out and chat with me anytime!</p>
+                
+                <div class="contact-box">
+                    <div class="info-item">
+                        <span>Email Address</span>
+                        <a href="mailto:zaydenlin99@gmail.com">zaydenlin99@gmail.com</a>
+                    </div>
+                    <div class="info-item">
+                        <span>Telegram</span>
+                        <a href="https://t.me/thetradertalk2026" target="_blank">Zayden Lin</a>
+                    </div>
+                    <div class="info-item">
+                        <span>Tik Tok</span>
+                        <a href="https://www.tiktok.com/@thetradertalk2026.new" target="_blank">The Trader Talk</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Zayden Linn. Designed for High Performance.</p>
+    </footer>
+
+    <script>
+        // 1. Scroll Reveal Logic
+        const sections = document.querySelectorAll('section');
+        const revealSection = () => {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const triggerPoint = window.innerHeight - 80;
+                if (sectionTop < triggerPoint) {
+                    section.classList.add('reveal');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealSection);
+        window.addEventListener('load', revealSection);
+
+        // 2. Modal Core Controls
+        const modal = document.getElementById('awardModal');
+        const openBtn = document.getElementById('openAwardBtn');
+        const closeBtn = document.getElementById('closeAwardBtn');
+
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            currentSlideIndex = 0; 
+            showSlide(currentSlideIndex);
+        });
+
+        const closeModal = () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // 3. Complete Image Slider Functional System
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide-img');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.getElementById('prevSlide');
+        const nextBtn = document.getElementById('nextSlide');
+
+        function showSlide(index) {
+            if (index >= slides.length) currentSlideIndex = 0;
+            if (index < 0) currentSlideIndex = slides.length - 1;
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[currentSlideIndex].classList.add('active');
+            if (dots[currentSlideIndex]) {
+                dots[currentSlideIndex].classList.add('active');
+            }
+        }
+
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentSlideIndex++;
+            showSlide(currentSlideIndex);
+        });
+
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentSlideIndex--;
+            showSlide(currentSlideIndex);
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentSlideIndex = index;
+                showSlide(currentSlideIndex);
+            });
+        });
+    </script>
+</body>
+</html>
